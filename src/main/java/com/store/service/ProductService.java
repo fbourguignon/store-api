@@ -1,5 +1,6 @@
 package com.store.service;
 
+import com.store.dto.ProductDTO;
 import com.store.exception.StoreBusinessException;
 import com.store.exception.StoreGenericException;
 import com.store.exception.StoreNotFoundException;
@@ -61,11 +62,15 @@ public class ProductService {
 
     }
 
-    public void save(Product product){
+    public Product save(ProductDTO productDTO){
         try {
-            productRepository.save(product);
+            return productRepository.save(
+                    Product.builder()
+                            .name(productDTO.getName())
+                            .description(productDTO.getDescription())
+                            .build());
         }catch (DataIntegrityViolationException de) {
-            log.error("O nome [{}] já existe em nossos registros",product.getName());
+            log.error("O nome [{}] já existe em nossos registros",productDTO.getName());
             throw new StoreBusinessException("Nome de produto já cadastrado!");
         } catch (Exception e){
             log.error(e.getMessage());

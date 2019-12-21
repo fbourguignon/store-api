@@ -28,19 +28,19 @@ public class ProductController {
     }
 
     @Secured("ROLE_ADMINISTRADOR")
-    @PostConstruct
+    @PostMapping
     public ResponseEntity<Product> save(@RequestBody ProductDTO productDTO){
         return ResponseEntity.accepted().body(productService.save(productDTO));
     }
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/{id}")
-    public Product get(@PathVariable UUID id){
-        return productService.get(id);
+    public ResponseEntity<Product> get(@PathVariable UUID id){
+        return ResponseEntity.ok(productService.get(id));
     }
 
     @Secured("ROLE_ADMINISTRADOR")
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ResponseDTO> update(@PathVariable Product product){
        productService.update(product);
         return ResponseEntity.ok(new ResponseDTO("Produto alterado com sucesso!"));

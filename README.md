@@ -6,7 +6,7 @@ API REST com Spring Boot 2.2.1 , Spring Data, Spring Security, JWT e Lombok
 
 O banco utilizado foi o postgresSQL com uma database chamada store
 
-As configurações de persistência apontando para o banco rodando no container e na mesma network estão no arquivo do profile network.
+As configurações de persistência apontando para o banco rodando no container e na mesma network estão no arquivo do profile container.
 
 ```console
 spring.datasource.url=jdbc:postgresql://db:5432/store?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false

@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  app-server:
+    image: store-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+       - "SPRING_PROFILES_ACTIVE=container"
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: store
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - backend
+
+networks:
+  backend:

@@ -18,7 +18,7 @@ public class RegisterController {
 
     private UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequestDTO createRegistrationRequest) {
         userService.save(createRegistrationRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO("Usuário registrado com sucesso!"));

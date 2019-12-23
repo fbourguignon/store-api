@@ -28,3 +28,9 @@ Para subir o ambiente com a API em Springboot e o banco de dados.
 ```console
 docker-compose up -d --build
 ```
+
+### Swagger
+
+Com o ambiente rodando, para acessar o swagger
+
+http://localhost:8080/store/swagger-ui.html

@@ -4,6 +4,8 @@ import com.store.dto.ProductDTO;
 import com.store.dto.ResponseDTO;
 import com.store.model.Product;
 import com.store.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,11 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
+@Api(value = "Product", description = "Actions para as operações com produto")
 public class ProductController {
 
     @Autowired
@@ -23,24 +25,28 @@ public class ProductController {
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping
+    @ApiOperation(value = "Lista os produtos")
     public Page<Product> list(Pageable pageable){
         return productService.list(pageable);
     }
 
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping
+    @ApiOperation(value = "Salva um produto")
     public ResponseEntity<Product> save(@RequestBody ProductDTO productDTO){
         return ResponseEntity.accepted().body(productService.save(productDTO));
     }
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/{id}")
+    @ApiOperation(value = "Recupera um produto pelo id")
     public ResponseEntity<Product> get(@PathVariable UUID id){
         return ResponseEntity.ok(productService.get(id));
     }
 
     @Secured("ROLE_ADMINISTRADOR")
     @PutMapping("/{id}")
+    @ApiOperation(value = "Atualiza um produto")
     public ResponseEntity<ResponseDTO> update(@PathVariable Product product){
        productService.update(product);
         return ResponseEntity.ok(new ResponseDTO("Produto alterado com sucesso!"));
@@ -48,6 +54,7 @@ public class ProductController {
 
     @Secured("ROLE_ADMINISTRADOR")
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Remove um produto")
     public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id){
         productService.remove(id);
         return ResponseEntity.ok(new ResponseDTO("Produto removido com sucesso!"));

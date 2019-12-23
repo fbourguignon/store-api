@@ -101,6 +101,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().accessDecisionManager(getAccessDecisionManager());
 
+        /** Swagger **/
+        http.authorizeRequests()
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+                .permitAll();
+
         /** Configuração de CORS **/
         http.cors().configurationSource(corsConfigurationSource());
 

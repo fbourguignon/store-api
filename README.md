@@ -1,29 +1,29 @@
 # store-api
-Projeto de estudo de uma API REST com Spring Boot 2.2.1 , Spring Data, Spring Security, JWT e Lombok
 
+- [x] Spring Boot 2.2.1
+- [x] Spring Security (JWT)
+- [x] Spring Data
+- [x] Lombok
+- [x] Flyway
+- [x] Swagger
+- [x] PostgresSQL
 
-### Banco de dados
+### Database
 
-O banco utilizado foi o postgresSQL com uma database chamada store
+Postgres local (profile dev)
+```console
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+```
 
-As configurações de persistência apontando para o banco rodando no container e na mesma network estão no arquivo do profile container.
-
+Postgres in docker network (profile container)
 ```console
 spring.datasource.url=jdbc:postgresql://db:5432/store?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
 spring.datasource.username=postgres
 spring.datasource.password=postgres
 ```
-
-### Build do Projeto
-
-Para buildar somente o artefato.
-```console
-mvn clean install
-```
-
-### Rodando o projeto
-
-Para subir o ambiente com a API em Springboot e o banco de dados.
+### Run the Application
 
 ```console
 docker-compose up -d --build
@@ -31,12 +31,12 @@ docker-compose up -d --build
 
 ### Swagger
 
-Com o ambiente rodando, para acessar o swagger
-
+```
 http://localhost:8080/store/swagger-ui.html
+```
 
 
-### Autenticação
+### Authentication
 
 ```json
 POST localhost:8080/store/auth/login

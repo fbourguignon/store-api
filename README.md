@@ -34,3 +34,14 @@ docker-compose up -d --build
 Com o ambiente rodando, para acessar o swagger
 
 http://localhost:8080/store/swagger-ui.html
+
+
+### Autenticação
+
+```json
+POST localhost:8080/store/auth/login
+{
+    "username": "jhon@gmail.com",
+    "password": "123456"
+}
+```

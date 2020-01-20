@@ -1,11 +1,14 @@
 # store-api
 
+Template project with
+
 - [x] Spring Boot 2.2.1
 - [x] Spring Security (JWT)
 - [x] Spring Data
 - [x] Lombok
 - [x] Flyway
 - [x] Swagger
+- [x] Docker
 - [x] PostgresSQL
 
 ### Database
@@ -25,6 +28,9 @@ spring.datasource.password=postgres
 ```
 ### Run the Application
 
+From project directory, start up the application by running.
+Compose pulls and build the images from project, and starts the services.
+
 ```console
 docker-compose up -d --build
 ```
@@ -34,7 +40,7 @@ docker-compose up -d --build
 ```
 http://localhost:8080/store/swagger-ui.html
 ```
-
+Enter http://localhost:8080/store/swagger-ui.html in a browser to see the application running.
 
 ### Authentication
 

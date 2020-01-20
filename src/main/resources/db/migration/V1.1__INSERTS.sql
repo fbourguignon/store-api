@@ -1,0 +1,6 @@
+INSERT INTO public.tb_role (id, type) VALUES ('a7dc2bc3-7cb2-4d75-b3e8-bdd90d4225f7', 'ROLE_ADMIN');
+INSERT INTO public.tb_role (id, type) VALUES ('cf1f8145-9fa2-4a57-9f8a-22b367ad110c', 'ROLE_USER');
+INSERT INTO public.tb_user (id, last_name, mail, name, password) VALUES ('0dfd56c9-7758-4cc0-984f-5f1a906f728c', 'Wick', 'jhon@gmail.com', 'Jhon', '$2a$10$oYjYwYZ41S3qlcDoPn7oFuIbKDah1CKgPm.uE.5KRiDg4E9QNewUO');
+INSERT INTO public.tb_user_role (tb_user_id, tb_role_id) VALUES ('0dfd56c9-7758-4cc0-984f-5f1a906f728c', 'a7dc2bc3-7cb2-4d75-b3e8-bdd90d4225f7');
+INSERT INTO public.tb_product (id, description, name) VALUES ('57875400-5a66-4494-83cc-d301cc2bfc57', 'Os recursos do sistema de refrigeração WINDFORCE 2X 2x ventiladores de lâmina exclusivos de 90mm, ventilador giratório alternativo.', 'GeForce GTX 1660');
+INSERT INTO public.tb_product (id, description, name) VALUES ('05a2a5a0-91a5-4517-a7f7-e31aba0a1a9a', 'Obtenha uma experiência de visualização vívida com a próxima geração Infinity-V Display. Pronto, Ação, Atirar. - Capture fotos incríveis e destaque-se com a câmera traseira de 13 MP', 'Samsung Galaxy A10');

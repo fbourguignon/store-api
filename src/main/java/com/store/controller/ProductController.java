@@ -48,8 +48,8 @@ public class ProductController {
     @Secured("ROLE_ADMIN")
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza um produto")
-    public ResponseEntity<ResponseDTO> update(@PathVariable Product product){
-       productService.update(product);
+    public ResponseEntity<ResponseDTO> update(@RequestBody ProductDTO productDTO,@PathVariable UUID id){
+       productService.update(productDTO,id);
         return ResponseEntity.ok(new ResponseDTO("Produto alterado com sucesso!"));
     }
 
@@ -57,7 +57,7 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Remove um produto")
     public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id){
-        productService.remove(id);
+        productService.delete(id);
         return ResponseEntity.ok(new ResponseDTO("Produto removido com sucesso!"));
     }
 

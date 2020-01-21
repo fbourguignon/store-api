@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Log4j2
@@ -46,7 +47,7 @@ public class ProductService {
 
     }
 
-    public void remove(UUID uuid){
+    public void delete(UUID uuid){
         try {
             productRepository.findById(uuid)
                     .ifPresentOrElse(
@@ -79,21 +80,22 @@ public class ProductService {
 
     }
 
-    public void update(Product product){
+    public void update(ProductDTO productDTO,UUID uuid){
         try {
-            productRepository.findById(product.getId())
+            productRepository.findById(uuid)
                     .ifPresentOrElse(
                             p -> productRepository.save(
                                     Product.builder()
-                                            .description(p.getDescription())
-                                            .name(p.getName())
+                                            .id(p.getId())
+                                            .description(productDTO.getDescription())
+                                            .name(productDTO.getName())
                                             .build()),
                             () -> new StoreNotFoundException("Produto não encontrado para remoção"));
         } catch (StoreNotFoundException s) {
-            log.warn("O produto com id [{}] não foi localizado para alteração",product.getId());
+            log.warn("O produto com id [{}] não foi localizado para alteração",uuid);
             throw s;
         }catch (DataIntegrityViolationException de) {
-            log.error("O nome [{}] já existe em nossos registros",product.getName());
+            log.error("O nome [{}] já existe em nossos registros",productDTO.getName());
             throw new StoreBusinessException("Nome de produto já cadastrado!");
         } catch (Exception e){
             log.error(e.getMessage());

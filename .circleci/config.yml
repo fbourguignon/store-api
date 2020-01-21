@@ -17,13 +17,6 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
 
-      - store_test_results:
-                path: build/test-results/test
-
-      - store_artifacts:
-                path: build/test-results/test
-                when: always
-
       - run: mvn dependency:go-offline
 
       - save_cache:

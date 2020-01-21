@@ -10,6 +10,7 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.UUID;
@@ -19,6 +20,7 @@ import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 public class ProductControllerTest {
 

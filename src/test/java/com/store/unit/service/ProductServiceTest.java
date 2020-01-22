@@ -1,4 +1,4 @@
-package com.store.service;
+package com.store.unit.service;
 
 
 import com.store.dto.ProductDTO;

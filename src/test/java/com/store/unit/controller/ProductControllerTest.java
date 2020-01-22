@@ -1,8 +1,9 @@
 package com.store.unit.controller;
 
 
+import com.store.controller.ProductController;
 import com.store.dto.ProductDTO;
-import com.store.unit.service.ProductService;
+import com.store.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

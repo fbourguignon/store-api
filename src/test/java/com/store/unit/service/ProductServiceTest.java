@@ -5,6 +5,7 @@ import com.store.dto.ProductDTO;
 import com.store.exception.StoreGenericException;
 import com.store.model.Product;
 import com.store.repository.ProductRepository;
+import com.store.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

@@ -6,6 +6,7 @@ import com.store.model.Role;
 import com.store.model.User;
 import com.store.repository.RoleRepository;
 import com.store.repository.UserRepository;
+import com.store.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

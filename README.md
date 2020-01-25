@@ -43,11 +43,30 @@ http://localhost:8080/store/swagger-ui.html
 Enter http://localhost:8080/store/swagger-ui.html in a browser to see the application running.
 
 ### Authentication
+   
+   ```json
+   POST /store/auth/login HTTP/1.1
+   Host: localhost:8080
+   Content-Type: application/json   
+   {
+       "username": "jhon@gmail.com",
+       "password": "123456"
+   }
+   ```
+   
+### Security
+
+The security expects a token named authorization with the generated JWT.
+   
+   ```json
+    GET /store/products HTTP/1.1
+    Host: localhost:8080
+    Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwZGZkNTZjOS03NzU4LTRjYzAtOTg0Zi01ZjFhOTA2ZjcyOGMiLCJpYXQiOjE1Nzk0ODY2ODcsImV4cCI6MTU4MDA5MTQ4N30.Ewn0A0OTSX9Ik8dDmQDe33UklZkUD62L-5F_I11dYkpCWqHlpjyOfy8FNS6pJAp4g2EGrRXRFquxaizvfJRQzw
+   ```
+
+The project uses two types of roles.
 
 ```json
-POST localhost:8080/store/auth/login
-{
-    "username": "jhon@gmail.com",
-    "password": "123456"
-}
+ROLE_ADMIN
+ROLE_USER   
 ```

@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
+
         User user = userService.findUserByEmail(email);
 
         return UserPrincipal.create(user);

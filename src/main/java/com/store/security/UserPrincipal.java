@@ -33,8 +33,8 @@ import java.util.stream.Collectors;
 
         return new UserPrincipal(
                 user.getId(),
-                user.getMail(),
                 user.getName(),
+                user.getMail(),
                 user.getPassword(),
                 authorities);
     }

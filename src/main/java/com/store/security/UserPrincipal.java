@@ -2,6 +2,7 @@ package com.store.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.store.model.User;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Builder
 @Data public class UserPrincipal implements UserDetails {
 
     private final UUID id;

@@ -8,6 +8,8 @@ import com.store.exception.StoreNotFoundException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,18 @@ public class ExceptionHandler {
     public ResponseEntity<Object> handleStoreRegisterNotFoundException(HttpServletRequest req, Exception ex) {
         log.warn("Exception interceptada: " + req.getRequestURL() + " ocasionada  " + ex);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDTO(ex.getMessage()));
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Object> handleStoreAccessDeniedException(HttpServletRequest req, Exception ex) {
+        log.warn("Exception interceptada: " + req.getRequestURL() + " ocasionada  " + ex);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ResponseDTO(ex.getMessage()));
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+    public ResponseEntity<Object> handleStoreAccessAuthenticationCredentialsNotFoundException(HttpServletRequest req, Exception ex) {
+        log.warn("Exception interceptada: " + req.getRequestURL() + " ocasionada  " + ex);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseDTO("Houve um erro ao validar o token"));
     }
 
 }

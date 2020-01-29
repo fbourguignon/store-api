@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ProductController {
     @PostMapping
     @ApiOperation(value = "Salva um produto")
     public ResponseEntity<Product> save(@RequestBody ProductDTO productDTO){
-        return ResponseEntity.accepted().body(productService.save(productDTO));
+        return new ResponseEntity<>(productService.save(productDTO),HttpStatus.CREATED);
     }
 
     @Secured("ROLE_ADMIN")

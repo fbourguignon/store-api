@@ -4,6 +4,7 @@ package com.store.handler;
 import com.store.dto.ResponseDTO;
 import com.store.exception.StoreBusinessException;
 import com.store.exception.StoreGenericException;
+import com.store.exception.StoreInvalidCredentialsException;
 import com.store.exception.StoreNotFoundException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,12 @@ public class ExceptionHandler {
     public ResponseEntity<Object> handleStoreAccessAuthenticationCredentialsNotFoundException(HttpServletRequest req, Exception ex) {
         log.warn("Exception interceptada: " + req.getRequestURL() + " ocasionada  " + ex);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseDTO("Houve um erro ao validar o token"));
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(StoreInvalidCredentialsException.class)
+    public ResponseEntity<Object> handleStoreAccessStoreInvalidCredentialsException(HttpServletRequest req, Exception ex) {
+        log.warn("Exception interceptada: " + req.getRequestURL() + " ocasionada  " + ex);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO("Usuário/Senha inválidos!"));
     }
 
 }

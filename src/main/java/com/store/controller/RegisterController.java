@@ -26,7 +26,7 @@ public class RegisterController {
     @PostMapping
     @ApiOperation(value = "Cadastra um usuário na aplicação")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequestDTO createRegistrationRequest) {
-        userService.save(createRegistrationRequest);
+        userService.createUser(createRegistrationRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO("Usuário registrado com sucesso!"));
     }
 }

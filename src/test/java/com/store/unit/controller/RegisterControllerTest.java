@@ -62,7 +62,7 @@ public class RegisterControllerTest {
     @Test
     public void mustThrowExceptionWhenEmailAlreadyExists() throws Exception {
 
-        doThrow(new StoreBusinessException("Email já cadastrado!")).when(userService).save(mockRegisterRequestDTO());
+        doThrow(new StoreBusinessException("Email já cadastrado!")).when(userService).createUser(mockRegisterRequestDTO());
 
         mvc.perform(post("/register")
                 .content(mockJsonBody())

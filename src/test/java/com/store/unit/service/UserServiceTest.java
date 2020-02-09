@@ -77,7 +77,7 @@ public class UserServiceTest {
         doReturn(Optional.of(new Role().builder().type(RoleType.ROLE_USER).build())).when(roleRepository).findByType(RoleType.ROLE_USER);
         doReturn(USER_PASSWORD_ENCODED).when(passwordEncoder).encode(USER_PASSWORD_DECODED);
 
-        userService.save(registerRequest);
+        userService.createUser(registerRequest);
 
         verify(roleRepository, times(1)).findByType(RoleType.ROLE_USER);
         verify(userRepository, times(1)).save(userArgumentCaptor.capture());

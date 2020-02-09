@@ -52,7 +52,15 @@ public class UserService {
         );
     }
 
-    public User save(RegisterRequestDTO request) {
+    public User createUser(RegisterRequestDTO request){
+        return save(request,RoleType.ROLE_USER);
+    }
+
+    public User createAdminUser(RegisterRequestDTO request){
+        return save(request,RoleType.ROLE_ADMIN);
+    }
+
+    private User save(RegisterRequestDTO request,RoleType roleType) {
         try{
             User user = User.builder()
                     .name(request.getName())
@@ -61,7 +69,7 @@ public class UserService {
                     .password(request.getPassword())
                     .build();
 
-            Role userRole = roleRepository.findByType(RoleType.ROLE_USER)
+            Role userRole = roleRepository.findByType(roleType)
                     .orElseThrow(() -> new StoreGenericException("Role não localizada"));
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));

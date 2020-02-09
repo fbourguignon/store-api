@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class AuthTestControllerTest extends BaseIntegrationTestController {
+public class AuthControllerIntegrationTest extends BaseIntegrationTestController {
 
     @Test
     public void mustLoginWithValidCredentials(){

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
-public class ProductTestControllerTest extends BaseIntegrationTestController {
+public class ProductControllerIntegrationTest extends BaseIntegrationTestController {
 
     @Autowired
     private TestRestTemplate restTemplate;

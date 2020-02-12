@@ -32,7 +32,7 @@ import java.util.UUID;
     private String password;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinTable(name = "tb_user_role",
             joinColumns = @JoinColumn(name = "tb_user_id"),
             inverseJoinColumns = @JoinColumn(name = "tb_role_id"))

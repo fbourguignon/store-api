@@ -1,20 +1,22 @@
 package com.store.integration.controller;
 
-import com.google.gson.Gson;
+
 import com.store.dto.RegisterRequestDTO;
+import com.store.dto.ResponseDTO;
 import com.store.model.User;
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 public class RegisterControllerIntegrationTest extends AbstractControllerIntegrationTests {
 
     @Test
-    public void registerUsingNewEmailWithSucess() throws Exception {
+    public void registerUsingNewEmailWithSucess() {
 
         RegisterRequestDTO registerRequest = RegisterRequestDTO
                 .builder()
@@ -24,16 +26,14 @@ public class RegisterControllerIntegrationTest extends AbstractControllerIntegra
                 .password("123456")
                 .build();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(registerRequest);
 
-        mockMvc.perform(post("/register")
-                .contentType("application/json")
-                .content(json))
-                .andExpect(status().isCreated());
+        HttpEntity<RegisterRequestDTO> request = new HttpEntity<>(registerRequest);
+        ResponseEntity<ResponseDTO> response = restTemplate.exchange("/register", HttpMethod.POST, request, ResponseDTO.class);
+        ResponseDTO responseDTO = response.getBody();
 
         User user = userRepository.findByMail(registerRequest.getMail()).get();
         assertEquals(registerRequest.getMail(), user.getMail());
+        assertEquals(responseDTO.getMessage(),"Usuário registrado com sucesso!");
     }
 
     @Test
@@ -47,14 +47,14 @@ public class RegisterControllerIntegrationTest extends AbstractControllerIntegra
                 .password("123456")
                 .build();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(registerRequest);
 
-        mockMvc.perform(post("/register")
-                .contentType("application/json")
-                .content(json))
-                .andExpect(jsonPath("$.message", is("Email já cadastrado!")))
-                .andExpect(status().isUnprocessableEntity());
+        HttpEntity<RegisterRequestDTO> request = new HttpEntity<>(registerRequest);
+        ResponseEntity<ResponseDTO> response = restTemplate.exchange("/register", HttpMethod.POST, request, ResponseDTO.class);
+        ResponseDTO responseDTO = response.getBody();
+
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY,response.getStatusCode());
+        assertEquals(responseDTO.getMessage(),"Email já cadastrado!");
+
 
     }
 }

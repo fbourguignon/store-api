@@ -37,7 +37,7 @@ public class RegisterControllerIntegrationTest extends AbstractControllerIntegra
     }
 
     @Test
-    public void throwsExceptionWithAlreadyRegisteredEmailInAllLayers() throws Exception {
+    public void throwsExceptionWithAlreadyRegisteredEmail() throws Exception {
 
         RegisterRequestDTO registerRequest = RegisterRequestDTO
                 .builder()

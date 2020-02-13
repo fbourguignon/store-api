@@ -1,5 +1,6 @@
 package com.store.integration.controller;
 
+import com.store.dto.ProductDTO;
 import com.store.integration.response.RestResponsePage;
 import com.store.model.Product;
 import com.store.repository.ProductRepository;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class ProductControllerIntegrationTest extends AbstractControllerIntegrationTests {
@@ -21,7 +23,7 @@ public class ProductControllerIntegrationTest extends AbstractControllerIntegrat
     private ProductRepository productRepository;
 
     @Test
-    public void mustLoginWithValidCredentials() {
+    public void mustLisWithPaginationProducts() {
 
         persistProducts();
 
@@ -37,6 +39,23 @@ public class ProductControllerIntegrationTest extends AbstractControllerIntegrat
 
         assertEquals(responseDTO.getTotalPages(),3);
         assertEquals(responseDTO.getTotalElements(),15);
+    }
+
+    @Test
+    public void mustCreateProduct() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", getJWTAdmin());
+        headers.add("Content-Type", "application/json");
+
+        ProductDTO productDTO = ProductDTO.builder().name("ProdutoCreate").description("Description").build();
+        HttpEntity<ProductDTO> request = new HttpEntity<>(productDTO,headers);
+
+        ResponseEntity<Product> response = restTemplate.exchange("/products", HttpMethod.POST, request/*httpEntity*/, Product.class);
+        Product product = response.getBody();
+
+        assertNotNull(product.getId());
+        assertEquals(product.getName(),productDTO.getName());
     }
 
 

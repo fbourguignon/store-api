@@ -43,7 +43,7 @@ public class RegisterControllerIntegrationTest extends AbstractControllerIntegra
                 .builder()
                 .name("User")
                 .lastName("Test")
-                .mail("user@gmail.com")
+                .mail("peter@gmail.com")
                 .password("123456")
                 .build();
 

@@ -43,7 +43,7 @@ public class AuthControllerIntegrationTest extends AbstractControllerIntegration
     protected LoginRequestDTO simpleUserLoginRequest(String password){
         return LoginRequestDTO
                 .builder()
-                .username("user@gmail.com")
+                .username("peter@gmail.com")
                 .password(password)
                 .build();
     }
